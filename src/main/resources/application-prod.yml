@@ -3,12 +3,13 @@ server:
   servlet:
     context-path: /batch
 
-  ## Mysql Configs
 spring:
+  config:
+    import: aws-secretsmanager:resident_meeting
   datasource:
-    url: jdbc:mysql://mysql-service:3306/resident?rewriteBatchedStatements=true
-    username: root
-    password: zerobase
+    url: jdbc:mysql://${db_host}:3306/resident?rewriteBatchedStatements=true
+    username: ${db_username}
+    password: ${db_password}
     driver-class-name: com.mysql.cj.jdbc.Driver
     show-sql: true
   jpa:
